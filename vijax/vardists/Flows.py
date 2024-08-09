@@ -801,10 +801,10 @@ class RealNVP(Flows):
         """
         inpW, inpb = params[0]
 
-        inputs = leakyrelu(jnp.dot(inputs, inpW) + inpb)
+        outputs = leakyrelu(jnp.dot(inputs, inpW) + inpb)
 
         for W, b in params[1:-1]:
-            outputs = jnp.dot(inputs, W) + b
+            outputs = jnp.dot(outputs, W) + b
 
         outW, outb = params[-1]
         outputs = jnp.dot(inputs, outW) + outb
